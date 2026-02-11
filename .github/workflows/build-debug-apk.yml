@@ -28,12 +28,10 @@ jobs:
           echo "--- pubspec.yaml (head) ---"
           sed -n '1,120p' pubspec.yaml || true
 
-      - name: Setup Flutter (ensure stable channel)
+      - name: Setup Flutter (latest stable)
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.10.8'
-          architecture: 'x64'
 
       - name: Install dependencies
         run: flutter pub get --verbose
