@@ -22,14 +22,36 @@ jobs:
         with:
           flutter-version: 'stable'
 
+      - name: Diagnostics
+        run: |
+          echo "--- flutter --version ---"
+          flutter --version
+          echo "--- flutter doctor -v ---"
+          flutter doctor -v
+          echo "--- Environment ---"
+          env | sort
+          echo "--- Workspace files (top-level) ---"
+          ls -la
+          echo "--- pubspec.yaml ---"
+          sed -n '1,120p' pubspec.yaml || true
+
       - name: Install dependencies
-        run: flutter pub get
+        run: flutter pub get --verbose
 
-      - name: Build debug APK
-        run: flutter build apk --debug --no-shrink
+      - name: Build debug APK (verbose, save log)
+        run: |
+          set -e
+          echo "Building with verbose logging..."
+          flutter build apk --debug --no-shrink -v 2>&1 | tee build.log || true
 
-      - name: Upload APK artifact
+      - name: Upload build log
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-log
+          path: build.log
+
+      - name: Upload APK artifact (if present)
         uses: actions/upload-artifact@v4
         with:
           name: app-debug-apk
-          path: build/app/outputs/flutter-apk/app-debug.apk
+          path: build/app/outputs/flutter-apk/app-debug.apk || true
