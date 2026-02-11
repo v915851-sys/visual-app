@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "441635280173",
+    "project_id": "visual-app-2026",
+    "storage_bucket": "visual-app-2026.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:441635280173:android:4380c44c1ea35804806fa4",
+        "android_client_info": {
+          "package_name": "com.example.visual"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLcZ96JHpxy1MQ4j-RKz0Y-RyftkiLAks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
